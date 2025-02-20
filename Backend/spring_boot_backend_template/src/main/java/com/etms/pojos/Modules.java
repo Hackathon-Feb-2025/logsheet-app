@@ -1,4 +1,4 @@
-package com.blogs.entities;
+package com.etms.pojos;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

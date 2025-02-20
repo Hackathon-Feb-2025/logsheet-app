@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.etms.dtos.AuthRequest;
 import com.etms.dtos.AuthResponse;
 import com.etms.pojos.Employee;
+import com.etms.repository.PersonRepository;
 import com.etms.security.CustomUserDetailsServiceImpl;
 import com.etms.security.JwtUtils;
 import com.etms.services.PersonService;
@@ -30,6 +32,8 @@ public class AuthController {
 	  
 	  @Autowired
 	  private PersonService personService;
+	  @Autowired
+	  private PersonRepository personrepo;
 	  @Autowired
 	   private CustomUserDetailsServiceImpl userDetailsService;
 
@@ -50,12 +54,14 @@ public class AuthController {
 	        Authentication authentication = authenticationManager.authenticate(
 	                new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword())
 	        );
+	        Employee user = personrepo.findByEmail(authRequest.getEmail()).orElseThrow(
+	                () -> new UsernameNotFoundException("User not found"));
 	        if (authentication.isAuthenticated()){
 	           // 2. We use userDetails service to load the details using the email
 	            UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getEmail());
 	           // 3. We use jwtUtil to create token using userDetails
 	            String token = jwtUtils.generateJwtToken(authentication);
-	            return ResponseEntity.status(HttpStatus.CREATED).body(new AuthResponse("Succesful auth!",token));
+	            return ResponseEntity.status(HttpStatus.CREATED).body(new AuthResponse("Succesful auth!",token,user));
 	        }else{
 	            return ResponseEntity.status(401).build();
 	        }
