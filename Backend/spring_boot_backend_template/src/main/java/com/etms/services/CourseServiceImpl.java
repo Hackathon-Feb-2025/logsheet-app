@@ -19,6 +19,7 @@ public class CourseServiceImpl implements CourseService{
 
 	@Override
 	public void saveCourse(Courses course) {
+		System.out.println(course);
 		courseDao.save(course);
 	}
 
