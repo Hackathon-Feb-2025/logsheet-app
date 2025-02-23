@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,13 +23,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Schedules  extends BaseEntity{
+public class Schedules extends BaseEntity{
 	
 	
 	
 	@OneToOne
+	@JoinColumn(unique = false)
 	private Courses course;
 	@OneToOne
+	@JoinColumn(unique = false)
 	private Modules modules; //(Foreign Key)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate date;
@@ -43,18 +46,16 @@ public class Schedules  extends BaseEntity{
 	@Enumerated(EnumType.STRING)
 	private SchduledGroup scduledgroup; //(Theory/E1/E2)
 	@OneToOne
+	@JoinColumn(unique = false)
 	private Employee faculty ;//(Foreign Key to Staff table)
 	@Enumerated(EnumType.STRING)
 	private ScheduledVenue scheduledvenue;
 
 }
 
+@Getter
 enum LogType {
 	Lecture,Lab
 }
-enum SchduledGroup {
-	Theory,KD1,KD2
-}
-enum ScheduledVenue {
-	KLH,PG,SG,AT
-}
+
+

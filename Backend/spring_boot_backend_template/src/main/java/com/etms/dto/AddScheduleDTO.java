@@ -3,6 +3,9 @@ package com.etms.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.etms.pojos.SchduledGroup;
+import com.etms.pojos.ScheduledVenue;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,10 +29,10 @@ public class AddScheduleDTO {
 	
 	private String  type ;//(Lecture/Lab)
 	
-	private String group; //(Theory/E1/E2)
+	private SchduledGroup scduledgroup;; //(Theory/E1/E2)
 	
 	private Long faculty_id ;//(Foreign Key to Staff table)
 	
-	private String venue;
+	private ScheduledVenue scheduledvenue;
 
 }

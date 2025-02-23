@@ -47,9 +47,11 @@ public class ScheduleService {
 		 Employee e=personRepository.findById(sdto.getFaculty_id()).orElseThrow();
 		 
 		 Schedules Sdto=mapper.map(sdto, Schedules.class);
+		// Sdto.setScduledgroup(sdto.getScduledgroup());
 		 Sdto.setModules(m);
 		 Sdto.setCourse(c);
 		 Sdto.setFaculty(e);
+		 
 		return  scheduleRepository.save(Sdto);
 		//return mapper.map(s, ScheduleRespDTO.class);
 		 
