@@ -37,5 +37,11 @@ public class ScheduleController {
 	    return ResponseEntity.status(HttpStatus.FOUND)
 	            .body(scheduleService.getScheduleByFacultyAndDate(facultyId, date));
 	}
+	
+	@GetMapping("/export")
+    public ResponseEntity<String> exportSchedulesToFile() {
+        scheduleService.saveSchedulesToFile();
+        return ResponseEntity.ok("Schedules exported successfully.");
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.etms.services;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,6 +26,8 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class ScheduleService {
+	
+	private static final String FILE_PATH = "schedules.txt";
 	
 	@Autowired
 	private ScheduleRepository scheduleRepository;
@@ -61,6 +65,34 @@ public class ScheduleService {
 		
 		return s;
 	}
+	
+	public void saveSchedulesToFile() {
+        List<Schedules> schedules = scheduleRepository.findAll();
+
+        try (FileWriter writer = new FileWriter(FILE_PATH)) {
+            writer.write("Sr Date StartTime EndTime Type Group Module Faculty Venue\n");
+
+            int sr = 1;
+            for (Schedules schedule : schedules) {
+                String line = String.format("%d %s %s %s %s %s %s %s %s\n",
+                        sr++,
+                        schedule.getDate(),
+                        schedule.getStart_time(),
+                        schedule.getEnd_time(),
+                        schedule.getType(),
+                        schedule.getScduledgroup(),
+                        schedule.getModules().getModuleName(), // Fetching module name
+                        schedule.getFaculty().getFirstName() + " " + schedule.getFaculty().getLastName(), // Fetching faculty name
+                        schedule.getScheduledvenue()
+                );
+
+                writer.write(line);
+            }
+            System.out.println("Schedules saved to " + FILE_PATH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	 
 
 }
