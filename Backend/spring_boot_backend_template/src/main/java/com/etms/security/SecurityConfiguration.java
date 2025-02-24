@@ -31,7 +31,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests
                         (request ->
                                 request.requestMatchers("/auth/login","/auth/signup",
-                                                "/v*/api-doc*/**","/swagger-ui/**","/api/modules/upload","/courses").permitAll()
+
+                                                "/v*/api-doc*/**","/swagger-ui/**","/api/modules/upload","/schedule/add","/schedule/{facultyId}/{date}","/schedule/export").permitAll()
                                         //required explicitly for JS clients (eg React app - to permit pre flight requests)
                                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
 
