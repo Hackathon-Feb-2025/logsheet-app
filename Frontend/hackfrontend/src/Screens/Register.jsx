@@ -50,7 +50,7 @@ export default function Register() {
         const body = { userName, email, password, mobileNo,roleId }
       try{
         // call post /admin/register api
-       const result= await axios.post('http://localhost:5063/api/User',body) 
+      const result= await axios.post('http://localhost:5063/api/User',body) 
         if (result.data.status === 'success') {
           console.log('Regsuccess1')
           toast.success('Successfully registered')
