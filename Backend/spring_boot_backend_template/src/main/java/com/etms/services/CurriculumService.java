@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.etms.dtos.LogsheetDTO;
 import com.etms.pojos.Courses;
 import com.etms.pojos.Employee;
+import com.etms.pojos.LogType;
 import com.etms.pojos.Logsheet;
 import com.etms.pojos.Modules;
 import com.etms.pojos.Schedules;
@@ -80,6 +81,9 @@ public class CurriculumService {
     
 
     public Logsheet saveLogEntry(LogsheetDTO logSheetDTO) {
+    	 if (logSheetDTO.getType() == "Lab" && logSheetDTO.getTopicsTaught() != null && !logSheetDTO.getTopicsTaught().isEmpty()) {
+             throw new IllegalArgumentException("TopicsTaught should be empty when type is LAB.");
+         }
         Logsheet logSheet =mapper.map(logSheetDTO, Logsheet.class);
           Schedules s= scheduleRepository.findById(logSheetDTO.getScheduleId()).orElseThrow();
           Courses c=courseRepository.findById(logSheetDTO.getCourseId()).orElseThrow();
@@ -91,6 +95,7 @@ public class CurriculumService {
          logSheet.setModule(m);
          logSheet.setSchedule(s);
          logSheet.setFaculty(e);
+         
        
 //        logSheet.setDate(logSheetDTO.getDate());
 //        logSheet.setStart_time(logSheetDTO.getStartTime());
@@ -104,4 +109,21 @@ public class CurriculumService {
        
         return logSheetRepository.save(logSheet);
     }
+//    public Logsheet saveLogsheet(LogsheetDTO logsheetDTO) {
+//        if (logsheetDTO.getType() == LogType.LAB && logsheetDTO.getTopicsTaught() != null && !logsheetDTO.getTopicsTaught().isEmpty()) {
+//            throw new IllegalArgumentException("TopicsTaught should be empty when type is LAB.");
+//        }
+//
+//        // Convert DTO to Entity and save
+//        Logsheet logsheet = new Logsheet();
+//        logsheet.setDate(logsheetDTO.getDate());
+//        logsheet.setStart_time(logsheetDTO.gettart_time());
+//        logsheet.setEnd_time(logsheetDTO.getEnd_time());
+//        logsheet.setType(logsheetDTO.getType());
+//        logsheet.setTopicsTaught(logsheetDTO.getTopicsTaught());
+//        logsheet.setAssignmentGiven(logsheetDTO.getAssignmentGiven());
+//        logsheet.setStudentProgress(logsheetDTO.getStudentProgress());
+//
+//        return logsheetRepository.save(logsheet);
+//    }
 }

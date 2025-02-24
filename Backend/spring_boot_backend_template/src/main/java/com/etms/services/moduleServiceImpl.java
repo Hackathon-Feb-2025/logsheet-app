@@ -19,7 +19,7 @@ import com.etms.repository.ModuleRepository;
 @Service
 public class moduleServiceImpl  {
 
-    private static final String UPLOAD_DIR = "D:/Practice/Hackthon/files/";
+    private static final String UPLOAD_DIR = "src/main/resources/";
     
     // Ensure this directory exists
     @Autowired

@@ -50,7 +50,7 @@ public class Logsheet extends BaseEntity {
 	    private LogType type; // Lecture or Lab
 
 	    @ElementCollection
-	    private List<String> topicsTaught; // Topics taught in Lecture
+	    private List<String> topicsTaught=null; // Topics taught in Lecture
 
 	    private String assignmentGiven; // Assignments in Lab
 

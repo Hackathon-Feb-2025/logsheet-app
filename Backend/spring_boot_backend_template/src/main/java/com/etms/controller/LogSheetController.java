@@ -4,6 +4,7 @@ package com.etms.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,7 @@ public class LogSheetController {
         
     	   Modules m=moduleRepository.findById(logSheetDTO.getModuleId()).orElseThrow();
         // Validate topics taught against the curriculum for the given module
-        List<String> invalidTopics = logSheetDTO.getTopicsTaught().stream()
+        List<String> invalidTopics = Optional.ofNullable(logSheetDTO.getTopicsTaught()).orElse(List.of()).stream()
                 .filter(topic -> !curriculumService.isValidTopic(m.getModuleName()
                 		, topic))
                 .toList();
@@ -52,6 +53,8 @@ public class LogSheetController {
         if (!invalidTopics.isEmpty()) {
             return ResponseEntity.badRequest().body("Invalid topics selected: " + invalidTopics);
         }
+        
+
 
         curriculumService.saveLogEntry(logSheetDTO);
         return ResponseEntity.ok("Log entry saved successfully!");

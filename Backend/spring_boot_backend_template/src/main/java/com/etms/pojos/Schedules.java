@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,10 +29,10 @@ public class Schedules extends BaseEntity{
 	
 	
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(unique = false)
 	private Courses course;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(unique = false)
 	private Modules modules; //(Foreign Key)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -45,7 +47,7 @@ public class Schedules extends BaseEntity{
 	private LogType type ;//(Lecture/Lab)
 	@Enumerated(EnumType.STRING)
 	private SchduledGroup scduledgroup; //(Theory/E1/E2)
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(unique = false)
 	private Employee faculty ;//(Foreign Key to Staff table)
 	@Enumerated(EnumType.STRING)
@@ -53,9 +55,6 @@ public class Schedules extends BaseEntity{
 
 }
 
-@Getter
-enum LogType {
-	Lecture,Lab
-}
+
 
 
