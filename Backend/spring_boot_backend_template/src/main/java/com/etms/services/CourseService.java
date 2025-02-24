@@ -1,8 +1,8 @@
-package com.etms.service;
+package com.etms.services;
 
 import java.util.List;
 
-import com.blogs.entities.Courses;
+import com.etms.pojos.Courses;
 
 public interface CourseService {
 	public void saveCourse(Courses course);

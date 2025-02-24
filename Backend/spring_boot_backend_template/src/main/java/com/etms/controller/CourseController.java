@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blogs.entities.Courses;
-import com.blogs.service.CourseService;
+import com.etms.pojos.Courses;
+import com.etms.services.CourseService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
