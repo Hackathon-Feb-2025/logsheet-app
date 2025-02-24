@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card,Dropdown, DropdownButton  } from "react-bootstrap";
+import { Container, Row, Col, Card,Dropdown, CardBody, CardTitle  } from "react-bootstrap";
 import Header from '../MYComponents/Header';
 import Footer from '../MYComponents/Footer';
 import React, { useState, useEffect } from 'react';
@@ -14,21 +14,22 @@ export default function CocoHome() {
 
 
         useEffect(() => {
-           
+    
                 const storedUsername = sessionStorage.getItem('name');
                 if (storedUsername) {
                     setUsername(storedUsername);
                 }
             
         }, [token]);
-    
-  return (
+    return (
     <div>
-      <Header username={username} />
-      <Container className="mt-4  d-flex flex-column align-items-center">
+        <Header username={username} />
+        <Container className="mt-4  d-flex flex-column align-items-center">
         {/* <h4 className="text-center mb-4">Dashboard</h4> */}
         <Row clas
-        sName="g-4 w-100 justify-content-center">
+        sName="g-4 w-100 justify-content-center text-center text-dark"
+            style={{ marginLeft:"20%" }}
+        >
         <Col xs={12} sm={6} md={8} className="mb-5">
             <Card className="text-center text-white" style={{ backgroundColor: "#4d8596" }}>
             <Card.Body>
@@ -48,54 +49,57 @@ export default function CocoHome() {
             {/* <Card.Text>totalLogs</Card.Text> */}
             </Card.Body>
             </Card>
-          </Col>
-          <Col xs={12} sm={6} md={8}>
-                        <Dropdown>
-                            <Dropdown.Toggle
-                                style={{
-                                    backgroundColor: "#ff5720",
-                                    border: "none",
-                                    color: "white",
-                                    width: "100%", // Full width
-                                    padding: "10px",
-                                    fontWeight: "bold",
-                                    textAlign: "center"
-                                }}
+        </Col>
+        <Col xs={12} sm={6} md={8} className="mb-5">
+            <Card className="text-center text-dark" style={{ backgroundColor: "#ff5720" }}>
+            <Dropdown>
+            <CardBody>
+            <CardTitle>
+                <Dropdown.Toggle
+                    style={{
+                            backgroundColor: "#ff5720",
+                            border: "none",
+                            color: "white",
+                            width: "100%", // Full width
+                            padding: "10px",
+                            fontWeight: "bold",
+                            textAlign: "center"
+                    }}
+                >View Report
+                </Dropdown.Toggle>
+            </CardTitle>
+            <Dropdown.Menu 
+                    style={{
+                            backgroundColor: "#ff916f",
+                            border: "none",
+                            width: "100%", // Full width
+                            textAlign: "center"
+                        }}
                             >
-                                View Report
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu
-                                style={{
-                                    backgroundColor: "#ff5720",
-                                    border: "none",
-                                    width: "100%", // Full width
-                                    textAlign: "center"
-                                }}
+                            <Dropdown.Item
+                                as={Link}
+                                to="/module-progress"
+                                style={{ color: "white", textAlign: "center" }}
                             >
-                                <Dropdown.Item
-                                    as={Link}
-                                    to="/module-progress"
-                                    style={{ color: "white", textAlign: "center" }}
-                                >
                                     Module Progress Report (Lectures)
-                                </Dropdown.Item>
-                                <Dropdown.Item
+                            </Dropdown.Item>
+                            <Dropdown.Item
                                     as={Link}
                                     to="/comparative-report"
                                     style={{ color: "white", textAlign: "center" }}
-                                >
+                            >
                                     Comparative Report (Scheduled vs Actual Hours)
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </Col>
-          
+                            </Dropdown.Item>
+            </Dropdown.Menu>
+            </CardBody>
+            </Dropdown>
+            </Card>
+        </Col>
         </Row>
-      </Container>
-      <Footer className="mt-5 mb-4" />
+        </Container>
+        <Footer className="mt-5 mb-4" />
     </div>
-  );
+    );
 }
 
 //   return (
