@@ -35,6 +35,8 @@ public class SecurityConfiguration {
                                                 "/schedule/export","/api/logsheets/log",
                                                 "/api/logsheets/curriculum/{moduleName}")
                                 .permitAll()
+
+
                                         //required explicitly for JS clients (eg React app - to permit pre flight requests)
                                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
 
