@@ -8,12 +8,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.etms.dtos.AuthRequest;
 import com.etms.dtos.AuthResponse;
-import com.etms.dtos.EmployeeEdit;
 import com.etms.pojos.Employee;
 import com.etms.repository.PersonRepository;
 import com.etms.security.CustomUserDetailsServiceImpl;
@@ -72,21 +73,5 @@ public class AuthController {
 		System.out.println("register user "+dto);
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(personService.registerNewUser(dto));			
-	}
-    @GetMapping("/user/{id}")
-    @Operation(description = "Get user by ID")
-    public ResponseEntity<?> getUser(@PathVariable Long id) {
-        System.out.println("Fetching user with ID: " + id);
-        return ResponseEntity.ok(personService.getUserById(id));
-    }
-
-    
-    @PutMapping("/editprofile/{id}")
-    @Operation(description = "User edit")
-	public ResponseEntity<?> editUser(@PathVariable Long id,@RequestBody @Valid EmployeeEdit dto) {
-        System.out.println("Editing user with ID: " + id);
-        dto.setId(id); // Ensure ID is set before passing to the service
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(personService.editUser(dto));			
 	}
 }
