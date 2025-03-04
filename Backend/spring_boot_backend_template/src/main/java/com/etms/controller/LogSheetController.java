@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.etms.dtos.LogSheetFormDTO;
 import com.etms.dtos.LogsheetDTO;
+import com.etms.pojos.LogSheetForm;
 import com.etms.pojos.Modules;
+import com.etms.repository.LogSheetFormRepository;
 import com.etms.repository.ModuleRepository;
 import com.etms.services.CurriculumService;
+import com.etms.services.ScheduleService;
 
 @RestController
 @RequestMapping("/api/logsheets")
@@ -28,6 +32,11 @@ public class LogSheetController {
     private  CurriculumService curriculumService;
 	@Autowired
     private ModuleRepository moduleRepository;
+	@Autowired
+    private LogSheetFormRepository logSheetFormRepository;
+	@Autowired
+	private ScheduleService scheduleService;
+
 
     public LogSheetController(CurriculumService curriculumService) {
         this.curriculumService = curriculumService;
@@ -58,5 +67,11 @@ public class LogSheetController {
 
         curriculumService.saveLogEntry(logSheetDTO);
         return ResponseEntity.ok("Log entry saved successfully!");
+    }
+    
+    @PostMapping
+    public ResponseEntity<String> createLogSheet(@RequestBody LogSheetFormDTO logsheet) {
+    	scheduleService.saveLogsheet(logsheet);
+        return ResponseEntity.ok("Logsheet submitted successfully");
     }
 }

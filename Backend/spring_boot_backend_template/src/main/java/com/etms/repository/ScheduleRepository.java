@@ -12,6 +12,8 @@ import com.etms.pojos.Schedules;
 public interface ScheduleRepository extends JpaRepository<Schedules, Long> {
 	
 	List<Schedules> findByFaculty(Employee faculty);
-	   Schedules findByFacultyAndDate(Employee faculty,LocalDate date);
+	  List<Schedules> findByFacultyAndDate(Employee faculty,LocalDate date);
+	   //new
+	   List<Schedules> findByDate(LocalDate date);
 
 }
