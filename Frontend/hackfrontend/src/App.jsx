@@ -21,6 +21,8 @@ import EditLog from './Screens/EditLog';
 import UploadCurriculum from './Screens/UploadCurriculum';
 import CocoHome from './Screens/CocoHome';
 import UploadSchedule from './Screens/UploadSchedule';
+import LogsheetForm from './MYComponents/logentry';
+import Logsheet from './MYComponents/AddLogs';
 
 
 
@@ -33,7 +35,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Register/>}/> 
         <Route path='/login' element={<LogIn/>}/> 
-        <Route path='/addlog' element={<Addlog/>}/>
+        <Route path='/addlog' element={<Logsheet/>}/>
         <Route path='/loglist' element={<Loglist/>}/>
         <Route path='/edit-profile' element={<EditProfile/>}/>
         <Route path='/view-profile' element={<ViewProfile/>}/>
