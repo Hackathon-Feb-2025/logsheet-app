@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests
                         (request ->
                                 request.requestMatchers("/auth/login","/auth/signup",
-                                                "/v*/api-doc*/**","/swagger-ui/**","/api/modules/upload","/schedule/add","/schedule/{facultyId}/{date}",
+                                                "/v*/api-doc*/**","/swagger-ui/**","/api/modules/upload","/api/upschedule/upload","/schedule/add","/schedule/{facultyId}/{date}",
                                                 "/schedule/export","/api/logsheets/log",
                                                 "/api/logsheets/curriculum/{moduleName}")
                                 .permitAll()
