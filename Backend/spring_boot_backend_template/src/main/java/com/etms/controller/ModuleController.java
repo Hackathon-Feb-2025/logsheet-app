@@ -42,4 +42,10 @@ public class ModuleController {
             return ResponseEntity.status(500).body("File upload failed: " + e.getMessage());
         }
     }
+    
+	@GetMapping
+	@Operation(summary= "Find all modules")
+	public ResponseEntity<?> findAll() {		
+		return ResponseEntity.ok(moduleService.findall());
+	}
 }
