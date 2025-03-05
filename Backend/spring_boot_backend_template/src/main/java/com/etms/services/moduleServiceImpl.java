@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class moduleServiceImpl  {
     private ModuleRepository modulerepo;
     @Autowired
     ModelMapper mapper;
+    
+	
+	public List<Modules> findall() {
+		return modulerepo.findAll();
+	}
 
     
     public Modules saveModule(Long courseId, String moduleName, MultipartFile file) throws IOException {

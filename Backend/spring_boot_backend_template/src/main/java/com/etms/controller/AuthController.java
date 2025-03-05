@@ -65,6 +65,11 @@ public class AuthController {
 	            return ResponseEntity.status(401).build();
 	        }
 	    }
+	    @GetMapping
+		@Operation(summary= "Find all ")
+		public ResponseEntity<?> findAll() {		
+			return ResponseEntity.ok(personService.findall());
+		}
 	    
     @PostMapping("/signup")
     @Operation(description = "User signup")

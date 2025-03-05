@@ -30,10 +30,10 @@ public class SecurityConfiguration {
                 //2. configure URL based access
                 .authorizeHttpRequests
                         (request ->
-                                request.requestMatchers("/auth/login","/auth/signup","/auth/editprofile/{id}","/auth/signup","/auth/user/{id}",
-                                                "/v*/api-doc*/**","/swagger-ui/**","/api/modules/upload","/api/upschedule/upload","/schedule/add","/schedule/{facultyId}/{date}",
+                                request.requestMatchers("/auth","/auth/login","/auth/signup","/auth/editprofile/{id}","/auth/signup","/auth/user/{id}",
+                                                "/v*/api-doc*/**","/swagger-ui/**","/api/modules","/api/modules/upload","/api/upschedule/upload","/schedule/add","/schedule/{facultyId}/{date}",
                                                 "/schedule/export","/api/logsheets/log",
-                                                "/api/logsheets/curriculum/{moduleName}")
+                                                "/api/logsheets/curriculum/{moduleName}","/courses","/api/generateReport")
                                 .permitAll()
 
 
