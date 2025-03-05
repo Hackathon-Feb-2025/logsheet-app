@@ -33,10 +33,9 @@ public class SecurityConfiguration {
                                 request.requestMatchers("/auth","/auth/login","/auth/signup","/auth/editprofile/{id}","/auth/signup","/auth/user/{id}",
                                                 "/v*/api-doc*/**","/swagger-ui/**","/api/modules","/api/modules/upload","/api/upschedule/upload","/schedule/add","/schedule/{facultyId}/{date}",
                                                 "/schedule/export","/api/logsheets/log",
-                                                "/api/logsheets/curriculum/{moduleName}","/courses","/api/generateReport")
+                                                "/api/logsheets/curriculum/{moduleName}","/courses","/api/generateReport","/schedule","/api/logsheets")
+
                                 .permitAll()
-
-
                                         //required explicitly for JS clients (eg React app - to permit pre flight requests)
                                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
 
