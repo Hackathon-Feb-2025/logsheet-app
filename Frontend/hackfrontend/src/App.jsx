@@ -6,9 +6,8 @@ import Home from './MYComponents/Home';
 import Header from './MYComponents/Header';
 import GetUser from './MYComponents/getuser';
 import AddUser from './MYComponents/adduser';
-import Addlog from './Screens/Addlog';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DateTime from './MYComponents/DateTime';
+
 import Sunbeam from './MYComponents/Sunbeam';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -21,8 +20,9 @@ import EditLog from './Screens/EditLog';
 import UploadCurriculum from './Screens/UploadCurriculum';
 import CocoHome from './Screens/CocoHome';
 import UploadSchedule from './Screens/UploadSchedule';
-import LogsheetForm from './MYComponents/logentry';
+
 import Logsheet from './MYComponents/AddLogs';
+import ScheduleManager from './MYComponents/scheduleuploader';
 
 
 
@@ -45,6 +45,7 @@ function App() {
         <Route path='/upcurr' element={<UploadCurriculum/>}/>
         <Route path='/cocohome' element={<CocoHome/>}/>
         <Route path='/upsch' element={<UploadSchedule/>}/>
+        <Route path='/upschfile' element={<ScheduleManager/>}/>
 
 
 
