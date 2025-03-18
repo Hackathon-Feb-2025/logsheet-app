@@ -3,6 +3,16 @@ import axios from 'axios';
 // const usersUrl = 'http://localhost:3003/users';
 const usersUrl = 'https://localhost:7029/api/User';
 
+const coursesUrl = 'http://localhost:8080/courses';
+
+const employeeUrl = 'http://localhost:8080/employees/staff';
+export const getEmployee = async () => {
+    return await axios.get(employeeUrl);
+}
+
+export const getCourses = async () => {
+    return await axios.get(coursesUrl);
+};
 export const signUp= async (id) => {
     id = id || '';
     return await axios.get(`${usersUrl}/${id}`);

@@ -2,6 +2,7 @@ package com.etms.dto;
 
 import com.etms.pojos.Courses;
 import com.etms.pojos.Employee;
+import com.etms.pojos.LogSheetForm;
 import com.etms.pojos.LogType;
 import com.etms.pojos.Logsheet;
 import com.etms.pojos.Modules;
@@ -21,12 +22,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class ModuleProgressReportDTO {
-    private List<Logsheet> logs;
+   // private List<Logsheet> logs;
+    private List<LogSheetForm> logs;
     private int topicsCovered;
     private int totalTopics;
     private double progressPercentage;
 
-    public ModuleProgressReportDTO(List<Logsheet> logs, int topicsCovered, int totalTopics, double progressPercentage) {
+    public ModuleProgressReportDTO(List<LogSheetForm> logs, int topicsCovered, int totalTopics, double progressPercentage) {
         this.logs = logs;
         this.topicsCovered = topicsCovered;
         this.totalTopics = totalTopics;
