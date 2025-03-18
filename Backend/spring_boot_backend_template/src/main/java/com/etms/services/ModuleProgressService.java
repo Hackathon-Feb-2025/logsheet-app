@@ -2,10 +2,12 @@ package com.etms.services;
 
 import com.etms.pojos.Courses;
 import com.etms.pojos.Employee;
+import com.etms.pojos.LogSheetForm;
 import com.etms.pojos.Logsheet;
 import com.etms.pojos.Modules;
 import com.etms.repository.LogSheetRepository;
 import com.etms.repository.CourseRepository;
+import com.etms.repository.LogSheetFormRepository;
 import com.etms.repository.ModuleRepository;
 import com.etms.repository.PersonRepository;
 import com.etms.dto.ModuleProgressReportDTO;
@@ -19,9 +21,10 @@ import java.util.Optional;
 
 @Service
 public class ModuleProgressService {
-    @Autowired
-    private LogSheetRepository logsheetRepository;
-    
+   // @Autowired
+   // private LogSheetRepository logsheetRepository;
+     @Autowired
+    private LogSheetFormRepository logSheetFormRepository;
     @Autowired
     private CourseRepository coursesRepository;
     
@@ -43,7 +46,7 @@ public class ModuleProgressService {
                 .orElseThrow(() -> new RuntimeException("Faculty not found: " + facultyName));
 
         // Fetch Logsheet entries
-        List<Logsheet> logs = logsheetRepository.findByCourseAndModuleAndFaculty(course, module, faculty);
+        List<LogSheetForm> logs = logSheetFormRepository.findAll();
 
         // Extract Unique Topics Taught
         Set<String> topicsTaught = logs.stream()
@@ -51,7 +54,8 @@ public class ModuleProgressService {
                 .collect(Collectors.toSet());
 
 
-        List<Logsheet> allModuleLogs = logsheetRepository.findByModule(module);
+      //  List<LogSheetForm> allModuleLogs = logSheetFormRepository.findAll();
+      List<LogSheetForm> allModuleLogs = logSheetFormRepository.findAll();
 
         // ✅ Calculate Total Topics Dynamically
         int totalTopics = allModuleLogs.stream()
@@ -60,6 +64,8 @@ public class ModuleProgressService {
                 .size();
         double progressPercentage = (totalTopics == 0) ? 0 : ((double) topicsTaught.size() / totalTopics) * 100;
 
-        return new ModuleProgressReportDTO(logs, topicsTaught.size(), totalTopics, progressPercentage);
+       // return new ModuleProgressReportDTO(logs, topicsTaught.size(), totalTopics, progressPercentage);
+       return new ModuleProgressReportDTO(logs, topicsTaught.size(), totalTopics, progressPercentage);
+
     }
 }
