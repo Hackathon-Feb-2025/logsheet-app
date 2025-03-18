@@ -23,6 +23,8 @@ import CocoHome from './Screens/CocoHome';
 import UploadSchedule from './Screens/UploadSchedule';
 import LogsheetForm from './MYComponents/logentry';
 import Logsheet from './MYComponents/AddLogs';
+import ModuleProgressReport from './Screens/ModuleProgressReport';
+
 
 
 
@@ -45,6 +47,7 @@ function App() {
         <Route path='/upcurr' element={<UploadCurriculum/>}/>
         <Route path='/cocohome' element={<CocoHome/>}/>
         <Route path='/upsch' element={<UploadSchedule/>}/>
+        <Route path='/module-progress-report' element={<ModuleProgressReport/>}/>
 
 
 
